@@ -1,15 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import NotesPreview from './components/NotesPreview';
 import SideBarMenu from './components/SideBarMenu';
+<<<<<<< HEAD
 
+=======
+import Greeting from './components/Greeting';
+>>>>>>> 01be5ef010ff2ce22fa63a5a1176f5ae6d4458ab
 
 const App = () => {
 
   const [newNote, setNewNote] = useState(false);
+<<<<<<< HEAD
   const [notes, setNotes] = useState( () =>
     localStorage.getItem('Notes') ? JSON.parse(localStorage.getItem('Notes')) : []
   );
   const [tempNotes,setTempNotes] = useState([]) 
+=======
+  const [notes, setNotes] = useState(
+    localStorage.getItem('Notes') ? JSON.parse(localStorage.getItem('Notes')) : []
+  );
+  const [tempNotes,setTempNotes] = useState([])
+  
+  const checkForMatch = () => {
+    const arrayToCheck = JSON.parse(localStorage.getItem('Notes'))
+    const findings = arrayToCheck.filter(note => {
+      const title = note.Title.toLowerCase().replace(/\s+/g, '');
+      const body = note.Body.toLowerCase().replace(/\s+/g, '');
+      const searchTerm = searchItem.toLowerCase().replace(/\s+/g, '');
+      return searchTerm && title.includes(searchTerm) || body.includes(searchTerm)})
+    setTempNotes(findings)}
+    
+>>>>>>> 01be5ef010ff2ce22fa63a5a1176f5ae6d4458ab
   const [searchItem, setsearchItem] = useState('')
   const handleSearch = (e) => {
     setsearchItem(e.target.value)
@@ -84,7 +105,11 @@ const App = () => {
     return textChecked;
   };
 
+<<<<<<< HEAD
   const saveNote = () => { 
+=======
+  const saveNote = () => {
+>>>>>>> 01be5ef010ff2ce22fa63a5a1176f5ae6d4458ab
     const savedNotes = localStorage.getItem('Notes')
       ? JSON.parse(localStorage.getItem('Notes'))
       : [];
@@ -113,15 +138,28 @@ const App = () => {
       <hr className="navBorder" />
       <div className='content'>
         <div className='sideBar'>
+<<<<<<< HEAD
+=======
+          {/* <div className='greeting'>
+            <Greeting />
+          </div> */}
+>>>>>>> 01be5ef010ff2ce22fa63a5a1176f5ae6d4458ab
           <div>
             <SideBarMenu number={notes.length}
               setNewNote={setNewNote}
               handleSearch={handleSearch}
+<<<<<<< HEAD
               
               searchItem={searchItem}
               tempNotes={tempNotes}
               notes={notes}
               setTempNotes={setTempNotes}
+=======
+              checkForMatch={checkForMatch}
+              searchItem={searchItem}
+              tempNotes={tempNotes}
+              notes={notes}
+>>>>>>> 01be5ef010ff2ce22fa63a5a1176f5ae6d4458ab
                />
           </div>
         </div>
