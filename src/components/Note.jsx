@@ -2,7 +2,7 @@ import React from 'react'
 import TopNoteDetails from './TopNoteDetails';
 import NoteBody from './NoteBody';
 
-const Note = ({setNotes,note, id ,title, hashtag, description,time, date, important, handleDelete, editNote, openHashtagStore, newNote, hashtagStoreIsOpen, setHashtagStoreIsOpen}) => {
+const Note = ({notes,setNotes,note, id ,title, hashtag, description,time, date, important, handleDelete, editNote, openHashtagStore, newNote, hashtagStoreIsOpen, setHashtagStoreIsOpen}) => {
 
   return (
     <div>
@@ -27,6 +27,7 @@ const Note = ({setNotes,note, id ,title, hashtag, description,time, date, import
           newNote={newNote}
           hashtagStoreIsOpen={hashtagStoreIsOpen}
           setHashtagStoreIsOpen={setHashtagStoreIsOpen}
+          notes={notes}
            />
       </div>
     </div>

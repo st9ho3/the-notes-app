@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HashtagShowroom from './HashtagShowroom';
 import { IoClose } from "react-icons/io5";
 
-const HashtagStore = ({ openNoteFormHashtags, closehashtags, setNotes, newNote, setHashtagStoreIsOpen }) => {
+const HashtagStore = ({ id, notes, openNoteFormHashtags, closehashtags, setNotes, newNote, setHashtagStoreIsOpen }) => {
   const [hashtags, setHashtags] = useState(() => {
     const savedHashtags = localStorage.getItem('Hashtags');
     return savedHashtags ? JSON.parse(savedHashtags) : [];
@@ -23,8 +23,7 @@ const HashtagStore = ({ openNoteFormHashtags, closehashtags, setNotes, newNote, 
 
   const closeHashtagNote = () => {
     setNotes(prevNotes => prevNotes.map(n => ({ ...n, HashtagOpen: false })));
-    setHashtagStoreIsOpen(false)
-    
+    setHashtagStoreIsOpen(false);
   };
 
   return (
@@ -38,10 +37,14 @@ const HashtagStore = ({ openNoteFormHashtags, closehashtags, setNotes, newNote, 
         placeholder='Add a hashtag #'
       />
       <hr className='hashtagBorderUp' />
-      <HashtagShowroom hashtags={hashtags} />
+      <HashtagShowroom
+        hashtags={hashtags}
+        setNotes={setNotes}
+        notes={notes}
+        id={id}
+      />
       <button className='submitHastag' disabled={!createHashtag} onClick={updateHashtags}>Add</button>
     </div>
   );
 };
-
-export default HashtagStore;
+export default HashtagStore

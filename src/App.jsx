@@ -49,7 +49,7 @@ const App = () => {
     Date: createDate(),
     Time: createTime(),
     Important: false,
-    Category: '',
+    Category: [],
     isEditable: false,
     HashtagOpen: false
   });
@@ -62,7 +62,7 @@ const App = () => {
       Date: '', // Reset with the current date
       Time: '', // Reset with the current time
       Important: false,
-      Category: '',
+      Category: [],
       isEditable: false,
       HashtagOpen: false
     });
