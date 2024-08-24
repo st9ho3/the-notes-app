@@ -1,25 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import NotesPreview from './components/NotesPreview';
 import SideBarMenu from './components/SideBarMenu';
-import Greeting from './components/Greeting';
+
 
 const App = () => {
 
   const [newNote, setNewNote] = useState(false);
-  const [notes, setNotes] = useState(
+  const [notes, setNotes] = useState( () =>
     localStorage.getItem('Notes') ? JSON.parse(localStorage.getItem('Notes')) : []
   );
-  const [tempNotes,setTempNotes] = useState([])
-  
-  const checkForMatch = () => {
-    const arrayToCheck = JSON.parse(localStorage.getItem('Notes'))
-    const findings = arrayToCheck.filter(note => {
-      const title = note.Title.toLowerCase().replace(/\s+/g, '');
-      const body = note.Body.toLowerCase().replace(/\s+/g, '');
-      const searchTerm = searchItem.toLowerCase().replace(/\s+/g, '');
-      return searchTerm && title.includes(searchTerm) || body.includes(searchTerm)})
-    setTempNotes(findings)}
-    
+  const [tempNotes,setTempNotes] = useState([]) 
   const [searchItem, setsearchItem] = useState('')
   const handleSearch = (e) => {
     setsearchItem(e.target.value)
@@ -94,7 +84,7 @@ const App = () => {
     return textChecked;
   };
 
-  const saveNote = () => {
+  const saveNote = () => { 
     const savedNotes = localStorage.getItem('Notes')
       ? JSON.parse(localStorage.getItem('Notes'))
       : [];
@@ -123,17 +113,15 @@ const App = () => {
       <hr className="navBorder" />
       <div className='content'>
         <div className='sideBar'>
-          {/* <div className='greeting'>
-            <Greeting />
-          </div> */}
           <div>
             <SideBarMenu number={notes.length}
               setNewNote={setNewNote}
               handleSearch={handleSearch}
-              checkForMatch={checkForMatch}
+              
               searchItem={searchItem}
               tempNotes={tempNotes}
               notes={notes}
+              setTempNotes={setTempNotes}
                />
           </div>
         </div>
