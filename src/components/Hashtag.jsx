@@ -4,7 +4,7 @@ import { IoIosAdd } from "react-icons/io";
 import HashtagStore from './HashtagStore';
 
 
-const Hashtag = ({ newNote,setNotes,hashtag, openHashtagStore, note }) => {
+const Hashtag = ({ newNote,setNotes,hashtag, openHashtagStore, note,hashtagStoreIsOpen,setHashtagStoreIsOpen }) => {
 
     return (
         <div className='hashtagArea'>
@@ -15,16 +15,17 @@ const Hashtag = ({ newNote,setNotes,hashtag, openHashtagStore, note }) => {
                 <p className={hashtagTextClassMap[hashtag[0].toLowerCase()] || null}> {hashtag} </p>
                 </div>}
             <button  
-                onClick={() => openHashtagStore(note.Id)} 
+                onClick={!hashtagStoreIsOpen && (() => openHashtagStore(note.Id))} 
                 className="addHashtag">
                 <IoIosAdd 
                 className='addHastagButton'
                  />
             </button>
-            {note.HashtagOpen 
+            {note.HashtagOpen
                 && <HashtagStore  
                     setNotes={setNotes}
                     newNote={newNote}
+                    setHashtagStoreIsOpen={setHashtagStoreIsOpen}
                     />}
         </div>
     );

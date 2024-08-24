@@ -291,7 +291,8 @@ color: white;
     height: 17rem;
     border-radius: 15px;
     background-color: #f7c740;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1); */
+    /* border: solid thin rgb(227, 227, 230); */
 }
 
 .noteBody {
@@ -305,7 +306,8 @@ color: white;
     border-radius: 15px;
     padding: 1rem;
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 10px rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 0 0 10px rgba(0, 0, 0, 0.05); */
+    border: solid thin rgb(227, 227, 230);
 }
 .note:hover .noteBody,
 .noteBody:hover {

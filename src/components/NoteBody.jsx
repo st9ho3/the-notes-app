@@ -2,7 +2,7 @@ import React from 'react'
 import Hashtag from './Hashtag';
 import { LuBellRing } from "react-icons/lu";
 
-const NoteBody = ({newNote,setNotes,title, description, important, hashtag, id, note, openHashtagStore}) => {
+const NoteBody = ({newNote,setNotes,title, description, important, hashtag, id, note, openHashtagStore, hashtagStoreIsOpen, setHashtagStoreIsOpen}) => {
   return (
     <div>
       <div className='noteBody'>
@@ -17,7 +17,9 @@ const NoteBody = ({newNote,setNotes,title, description, important, hashtag, id, 
          note={note}
          openHashtagStore={openHashtagStore}
          setNotes={setNotes}
-         newNote={newNote} />
+         newNote={newNote}
+         hashtagStoreIsOpen={hashtagStoreIsOpen}
+         setHashtagStoreIsOpen={setHashtagStoreIsOpen} />
       </div>
     </div>
   )

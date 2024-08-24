@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import HashtagShowroom from './HashtagShowroom';
 import { IoClose } from "react-icons/io5";
 
-const HashtagStore = ({ openNoteFormHashtags, closehashtags, setNotes, newNote }) => {
+const HashtagStore = ({ openNoteFormHashtags, closehashtags, setNotes, newNote, setHashtagStoreIsOpen }) => {
   const [hashtags, setHashtags] = useState(() => {
     const savedHashtags = localStorage.getItem('Hashtags');
     return savedHashtags ? JSON.parse(savedHashtags) : [];
@@ -23,6 +23,8 @@ const HashtagStore = ({ openNoteFormHashtags, closehashtags, setNotes, newNote }
 
   const closeHashtagNote = () => {
     setNotes(prevNotes => prevNotes.map(n => ({ ...n, HashtagOpen: false })));
+    setHashtagStoreIsOpen(false)
+    
   };
 
   return (

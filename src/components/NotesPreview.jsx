@@ -8,6 +8,7 @@ const NotesPreview = ({ searchItem, tempNotes, setNote, handleDelete, notes, not
   const handleClick = () => {
     setList(prev => !prev)
   }
+  const [hashtagStoreIsOpen, setHashtagStoreIsOpen] = useState(false)
   let notesToDisplay;
 
   if (tempNotes && tempNotes.length > 0 && searchItem) {
@@ -26,6 +27,7 @@ const NotesPreview = ({ searchItem, tempNotes, setNote, handleDelete, notes, not
     localStorage.setItem('Notes', JSON.stringify(editableNotes));
   };
   const openHashtagStore = (id) => {
+    setHashtagStoreIsOpen(true)
     const notesToHashtag = JSON.parse(localStorage.getItem('Notes'));
     const hashtagNotes = notesToHashtag.map((note) =>
       id === note.Id ? { ...note, HashtagOpen: true } : note
@@ -58,6 +60,8 @@ const NotesPreview = ({ searchItem, tempNotes, setNote, handleDelete, notes, not
           setNotes={setNotes}
           notesToDisplay={notesToDisplay}
           openHashtagStore={openHashtagStore}
+          hashtagStoreIsOpen={hashtagStoreIsOpen}
+          setHashtagStoreIsOpen={setHashtagStoreIsOpen}
           />
           
       <div className='addBox'>
