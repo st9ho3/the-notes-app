@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PaginatedNotes from './PaginatedNotes';
 import NoteForm from './NoteForm';
 
@@ -25,6 +25,16 @@ const NotesPreview = ({ searchItem, tempNotes, setNote, handleDelete, notes, not
     setNotes(editableNotes);
     localStorage.setItem('Notes', JSON.stringify(editableNotes));
   };
+  const openHashtagStore = (id) => {
+    const notesToHashtag = JSON.parse(localStorage.getItem('Notes'));
+    const hashtagNotes = notesToHashtag.map((note) =>
+      id === note.Id ? { ...note, HashtagOpen: true } : note
+    );
+    setNotes(hashtagNotes);
+    localStorage.setItem('Notes', JSON.stringify(hashtagNotes));
+  };
+ 
+
   return (
     <div>
       {
@@ -47,6 +57,7 @@ const NotesPreview = ({ searchItem, tempNotes, setNote, handleDelete, notes, not
           editNote={editNote}
           setNotes={setNotes}
           notesToDisplay={notesToDisplay}
+          openHashtagStore={openHashtagStore}
           />
           
       <div className='addBox'>
@@ -58,6 +69,9 @@ const NotesPreview = ({ searchItem, tempNotes, setNote, handleDelete, notes, not
             setNewNote={setNewNote}
             clearNote={clearNote}
             searchItem={searchItem}
+            openHashtagStore={openHashtagStore}
+            newNote={newNote}
+            setNotes={setNotes}
           />
         )}
       </div>

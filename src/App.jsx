@@ -50,7 +50,8 @@ const App = () => {
     Time: createTime(),
     Important: false,
     Category: '',
-    isEditable: false
+    isEditable: false,
+    HashtagOpen: false
   });
 
   const clearNote = () => {
@@ -62,7 +63,8 @@ const App = () => {
       Time: '', // Reset with the current time
       Important: false,
       Category: '',
-      isEditable: false
+      isEditable: false,
+      HashtagOpen: false
     });
   };
 
@@ -107,7 +109,6 @@ const App = () => {
   return (
     <div>
       <div className='navigation'>
-
       </div>
       <hr className="navBorder" />
       <div className='content'>
@@ -116,7 +117,6 @@ const App = () => {
             <SideBarMenu number={notes.length}
               setNewNote={setNewNote}
               handleSearch={handleSearch}
-              
               searchItem={searchItem}
               tempNotes={tempNotes}
               notes={notes}

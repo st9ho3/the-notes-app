@@ -2,7 +2,7 @@ import React, {useState } from "react";
 import SharedForm from "./SharedForm";
 
 
-const EditForm = ({ note, setNotes }) => {
+const EditForm = ({ note, setNotes, openHashtagStore }) => {
 
   const [editedNote, setEditedNote] = useState({ ...note });
 
@@ -41,6 +41,7 @@ const EditForm = ({ note, setNotes }) => {
         handleSubmit={handleEditedSubmit}
         saveNote={saveEditedNote}
         note={editedNote}
+        openHashtagStore={openHashtagStore}
          />  
     </div>
     

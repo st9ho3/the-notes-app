@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { hashtagBodyClassMap, hashtagTextClassMap } from './constants/HashtagColors';
 
-const HashtagShowroom = ({ hashtags }) => {
+const HashtagShowroom = () => {
+    const gethashs = localStorage.getItem('Hashtags') ? JSON.parse(localStorage.getItem('Hashtags')) : []
+
   return (
       <div className="hashtagShowroom">
-          {hashtags.map((hashtag, index) => {
+          {gethashs.map((hashtag, index) => {
               const firstLetter = hashtag[0].toLowerCase() 
               return (
                   <div key={index} className='hashtag'>

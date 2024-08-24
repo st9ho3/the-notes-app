@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Note from './Note';
 import EditForm from './EditForm';
 
-const PaginatedNotes = ({ editNote, handleDelete, list, newNote, setNewNote, setNotes, setNote, notesToDisplay}) => {
+const PaginatedNotes = ({ editNote, handleDelete, list, newNote, setNewNote, setNotes, setNote, notesToDisplay, openHashtagStore}) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const  pageSize = 8
@@ -35,6 +35,7 @@ const PaginatedNotes = ({ editNote, handleDelete, list, newNote, setNewNote, set
                 setNotes={setNotes}
                 setNote={setNote}
                 id={note.Id}
+                openHashtagStore={openHashtagStore}
               />
             );
           } else {
@@ -50,6 +51,10 @@ const PaginatedNotes = ({ editNote, handleDelete, list, newNote, setNewNote, set
                 handleDelete={handleDelete}
                 id={note.Id}
                 editNote={editNote}
+                note={note}
+                openHashtagStore={openHashtagStore}
+                setNotes={setNotes}
+                newNote={newNote}
               />
             );
           }

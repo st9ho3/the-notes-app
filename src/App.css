@@ -215,6 +215,7 @@ color: white;
 .notesBoard {
     background-color: white;
     padding: 1.5rem;
+    padding-left: 3rem;
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 21rem);
@@ -428,7 +429,7 @@ p {
     border-radius: 5px;
     border: thin solid rgb(182, 179, 179);
     padding: .5rem;
-    margin-bottom: .5rem;
+    margin-bottom: .3rem;
     font-family: 'Poppins',sans-serif;
 }
 .inputTitle:focus {
@@ -591,7 +592,8 @@ label {
     font-size: .9rem;
     font-weight: 400;
     opacity: .4;
-    cursor: pointer;   
+    cursor: pointer;
+    border: none;   
 }
 
 .hashtagStore {
@@ -603,9 +605,26 @@ label {
     padding: 1rem;
     background-color: white;
     opacity: .95;
-    top: -11rem;
-    right: -8.5rem;
+    bottom: -2.5rem;
+    left: -0.6rem;
     border: solid thin rgb(227, 227, 230);
+}
+.hashtagStoreOption{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 1.4rem;
+    background-color: #f7c740; 
+    border-radius: 5px;
+    margin-bottom: .2rem;
+    padding: .3rem;
+    cursor: pointer;
+    
+}
+.hashtagStoreOptionText{
+    font-size: .9rem;
+    color: #ffffff;
 }
 .createHashtag{
     position: absolute;
@@ -682,6 +701,7 @@ label {
     opacity: .8;
     border-radius: 0 0 8px 8px;
 }
+
 .sharedForm {
     position: absolute;
     z-index: 3;
