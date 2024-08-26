@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { hashtagBodyClassMap, hashtagTextClassMap } from './constants/HashtagColors';
 import { IoIosAdd } from "react-icons/io";
 import HashtagStore from './HashtagStore';
-import { IoClose } from "react-icons/io5";
+import HashtagBody from './HashtagBody';
 
 const Hashtag = ({
     id,
@@ -24,6 +23,7 @@ const Hashtag = ({
         const filtered = hashtags.filter((_, index) => index !== HashtagID);
         setDeleted(filtered);
     };
+    console.log(hashtagStoreIsOpen)
 
     useEffect(() => {
         const updateDeleted = (NoteID) => {
@@ -40,18 +40,14 @@ const Hashtag = ({
             {hashtags.length > 0 && hashtags.map((hashtag, index) => {
                 const firstLetter = hashtag[0]?.toLowerCase();
                 return (
-                    <div key={index} className='showroomhashtag'>
-                        <IoClose 
-                            className='hashtagBodyCloseButton' 
-                            onClick={() => deleteNoteHashtag(index)} 
-                        />
-                        <div className='hashtag'>
-                            <div className={hashtagBodyClassMap[firstLetter] || ''}></div>
-                            <p className={hashtagTextClassMap[firstLetter] || ''}>
-                                {hashtag}
-                            </p>
-                        </div>
-                    </div>
+                    <div key={index}>
+                        <HashtagBody
+                            firstLetter={firstLetter}
+                            hashtagStoreIsOpen={hashtagStoreIsOpen}
+                            text={hashtag}
+                            deleteShowroomHashtag={deleteNoteHashtag}
+                            id={index} />
+                    </div>  
                 );
             })}
             <button  
