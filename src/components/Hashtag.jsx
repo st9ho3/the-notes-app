@@ -1,42 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { hashtagBodyClassMap, hashtagTextClassMap } from './constants/HashtagColors';
 import { IoIosAdd } from "react-icons/io";
 import HashtagStore from './HashtagStore';
 import { IoClose } from "react-icons/io5";
-import HashtagBody from './HashtagBody';
 
-const Hashtag = ({ 
-    id, 
-    notes, 
-    newNote, 
-    setNotes, 
-    hashtags, 
-    openHashtagStore, 
-    note, 
-    hashtagStoreIsOpen, 
-    setHashtagStoreIsOpen 
+const Hashtag = ({
+    id,
+    notes = [],
+    newNote,
+    setNotes,
+    hashtags = [],
+    openHashtagStore,
+    note,
+    hashtagStoreIsOpen,
+    setHashtagStoreIsOpen
 }) => {
+    const [deletedNotes, setDeleted] = useState([]);
 
     // Determine the click handler based on the state
     const handleClick = !hashtagStoreIsOpen ? () => openHashtagStore(note.Id) : undefined;
 
-    const deleteNoteHashtag = (id) => {
-        // Filter out the hashtag to delete
-        const filteredhashs = hashtags.filter((hashtag, index) => index !== id);
-        
-        const newNotes = notes.map((note) => {
-            return { ...note, Category: filteredhashs };
-        });
-        
-        setNotes(newNotes);
+    const deleteNoteHashtag = (HashtagID) => {
+        const filtered = hashtags.filter((_, index) => index !== HashtagID);
+        setDeleted(filtered);
     };
+
+    useEffect(() => {
+        const updateDeleted = (NoteID) => {
+            const newNotes = notes.map((note) =>
+                note.Id === NoteID ? { ...note, Category: deletedNotes } : note
+            );
+            setNotes(newNotes);
+        };
+        updateDeleted(id);
+    }, [deletedNotes]);
 
     return (
         <div className='hashtagArea'>
             {hashtags.length > 0 && hashtags.map((hashtag, index) => {
                 const firstLetter = hashtag[0]?.toLowerCase();
                 return (
-                    /* <div key={index} className='showroomhashtag'>
+                    <div key={index} className='showroomhashtag'>
                         <IoClose 
                             className='hashtagBodyCloseButton' 
                             onClick={() => deleteNoteHashtag(index)} 
@@ -47,16 +51,9 @@ const Hashtag = ({
                                 {hashtag}
                             </p>
                         </div>
-                    </div> */
-                    <div key={index}>
-                        <HashtagBody
-                            deleteShowroomHashtag={deleteNoteHashtag}
-                            firstLetter={firstLetter}
-                            text={hashtag}
-                            id={index} />
                     </div>
-    
-                )})}
+                );
+            })}
             <button  
                 onClick={handleClick} 
                 className="addHashtag"
@@ -75,5 +72,6 @@ const Hashtag = ({
         </div>
     );
 };
+
 
 export default Hashtag;
