@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { hashtagBodyClassMap, hashtagTextClassMap } from './constants/HashtagColors';
 
 const HashtagShowroom = ({ setNotes, id }) => {
-    const gethashs = localStorage.getItem('Hashtags') ? JSON.parse(localStorage.getItem('Hashtags')) : []
-    const [hashs, setHashs] = useState([])
+    const gethashs = localStorage.getItem('Hashtags') ? JSON.parse(localStorage.getItem('Hashtags')) : [];
+    const [hashs, setHashs] = useState('');
 
     const hashtagClick = (hashtagID) => {
-        setHashs(prevHashs => [...prevHashs, gethashs[hashtagID]]);
-    }
+        const selectedHashtag = gethashs[hashtagID];
+        setHashs( selectedHashtag);   
+    };
 
     useEffect(() => {
         if (hashs.length > 0) {  // Update only if there is a change in hashs
@@ -16,9 +17,11 @@ const HashtagShowroom = ({ setNotes, id }) => {
                 
                 const updatedNotes = savedNotes.map(note => {
                     if (note.Id === noteId) {
+                        // Check if the note.Category already exists in the note's Category array
+                        const isUnique = note.Category.every(hash => hash !== hashs);
                         // Combine the existing categories with the new one, ensuring no duplicates
-                        const newCategory = [...note.Category, ...hashs].slice(0, 3);
-                        return { ...note, Category: newCategory };
+                        const newCategory = [...note.Category, hashs].slice(0, 3)  
+                        return isUnique ? { ...note, Category: newCategory } : note
                     }
                     return note;
                 });

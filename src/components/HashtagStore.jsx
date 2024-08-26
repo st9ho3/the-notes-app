@@ -15,11 +15,21 @@ const HashtagStore = ({ id, notes, openNoteFormHashtags, closehashtags, setNotes
 
   const updateHashtags = () => {
     const arr = localStorage.getItem('Hashtags') ? JSON.parse(localStorage.getItem('Hashtags')) : [];
-    arr.push(createHashtag);
-    setHashtags([...hashtags, createHashtag]);
-    localStorage.setItem('Hashtags', JSON.stringify(arr));
-    setHashtag('');
-  };
+
+    // Check if the createHashtag already exists in the array
+    const isUnique = arr.every(hash => hash !== createHashtag);
+
+    if (isUnique) {
+        // If the hashtag is unique, add it to the array and update the state
+        arr.push(createHashtag);
+        setHashtags([...hashtags, createHashtag]);
+        localStorage.setItem('Hashtags', JSON.stringify(arr));
+        setHashtag('');  // Clear the input field
+    } else {
+        console.log('Hashtag already exists');
+    }
+};
+
 
   const closeHashtagNote = () => {
     setNotes(prevNotes => prevNotes.map(n => ({ ...n, HashtagOpen: false })));

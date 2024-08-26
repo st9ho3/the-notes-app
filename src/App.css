@@ -169,19 +169,19 @@ hr {
     font-size: .9rem;
     font-weight: 400;
     right: 1rem;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1);
+    
+    
 }
 
 .createNote {
     display: flex;
     align-items: center;
     width: 11rem;
-    background-color: #f7c740;
+    background-color: #f3cf63;
     margin-top: 1.5rem;
-    margin-left: 2rem;
+    margin-left: 1.6rem;
     margin-bottom: .5rem;
     border-radius: 7px;
-    box-shadow: 2px 2px 5px rgba(94, 91, 91, 0.1);
     cursor: pointer;
 }
 
@@ -560,6 +560,11 @@ label {
     border-radius: 6px;
     opacity: .4;
 }
+/* .hashtagBodyA, .hashtagBodyB, 
+.hashtagBodyFriends, .hashtagBodyHome,
+.hashtagBodyWork:active {
+    border: solid blue;
+} */
 .hashtagTextB {
     position: absolute;
     color: #5f0707;
@@ -575,11 +580,30 @@ label {
     
 }
 .hashtag {
+    position: relative;
     margin-right: .3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    
+}
+.hashtag:hover {
+    transform: translateY(-.05rem);
+    transition: .5s ease;
+}
+.hashtagBodyCloseButton{
+    position: absolute;
+    top: -.6rem;
+    right: -.1em;
+    color: #a8a9ac;
+    font-weight: 600;
+    opacity: 0;
+}
+.hashtag:hover .hashtagBodyCloseButton,
+.hashtagBodyCloseButton:hover{
+    opacity: 1;
+    transition: .7s ease;
 }
 .addHashtag {
     

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NotesPreview from './components/NotesPreview';
 import SideBarMenu from './components/SideBarMenu';
+import {nanoid} from 'nanoid'
 
 const App = () => {
 
@@ -43,7 +44,7 @@ const App = () => {
   };
 
   const [note, setNote] = useState({
-    Id: 0,
+    Id: '',
     Title: '',
     Body: '',
     Date: createDate(),
@@ -56,7 +57,7 @@ const App = () => {
 
   const clearNote = () => {
     setNote({
-      Id: 0,
+      Id: '',
       Title: '',
       Body: '',
       Date: '', // Reset with the current date
@@ -103,7 +104,8 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('Notes', JSON.stringify(notes));
     newNote && setNewNote(false);
-    checkId();
+    /* checkId(); */
+    setNote({ ...note, Id: nanoid()})
   }, [notes]);
 
   return (
