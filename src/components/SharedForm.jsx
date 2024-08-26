@@ -6,14 +6,6 @@ import HashtagStore from './HashtagStore';
 const SharedForm = ({ handleInput, closeForm, handleSubmit, note, openhashtags, openNoteFormHashtags, closehashtags, newNote, setNotes }) => {
   return (
     <div className='sharedForm'>
-      {openNoteFormHashtags && (
-        <HashtagStore
-          openNoteFormHashtags={openNoteFormHashtags}
-          closehashtags={closehashtags}
-          setNotes={setNotes}
-          newNote={newNote}
-        />
-      )}
       <div className='note'>
         <IoClose className='closeButton' onClick={closeForm} />
         <form onSubmit={handleSubmit} className='create'>
@@ -26,11 +18,6 @@ const SharedForm = ({ handleInput, closeForm, handleSubmit, note, openhashtags, 
             placeholder='Enter a title'
             onChange={handleInput}
           />
-          {newNote && (
-            <div className="hashtagStoreOption" onClick={openhashtags}>
-              <p className='hashtagStoreOptionText'>#</p>
-            </div>
-          )}
           <textarea
             name="Body"
             value={note.Body}

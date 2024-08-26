@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { hashtagBodyClassMap, hashtagTextClassMap } from './constants/HashtagColors';
 import { IoClose } from "react-icons/io5";
 
-const HashtagBody = ({ hashtag, hashtagClick, index }) => {
-    // Check if hashtag is defined and not empty
-    if (!hashtag) return null;
+const HashtagBody = ({ text, hashtagClick, firstLetter, id, deleteShowroomHashtag }) => {
 
-    const firstLetter = hashtag.body[0]?.toLowerCase() || '';  // Safe access using optional chaining
 
     return (
-        <div className='hashtag' onClick={() => hashtagClick(hashtag.id)}>
-            <IoClose className='hashtagBodyCloseButton' />
-            <div className={hashtagBodyClassMap[firstLetter] || ''}></div>
-            <p className={hashtagTextClassMap[firstLetter] || ''}> {hashtag} </p>
+        <div className='showroomhashtag'>
+            <IoClose className='hashtagBodyCloseButton' onClick={() => deleteShowroomHashtag(id)} />
+            <div className='hashtag' onClick={() => hashtagClick(id)}>
+                <div className={hashtagBodyClassMap[firstLetter] || ''}></div>
+                <p className={hashtagTextClassMap[firstLetter] || ''}>{text}</p>
+            </div>
         </div>
+        
     );
 };
 

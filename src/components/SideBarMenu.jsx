@@ -5,29 +5,35 @@ import SideBarList from './SideBarList';
 import CreateNote from './CreateNote';
 
 const SideBarMenu = ({ number, setNewNote, handleSearch, searchItem, setTempNotes }) => {
-
   const [show, setShow] = useState(true);
+
   const showMenu = () => {
     setShow(prev => !prev);
   };
 
   const checkForMatch = () => {
-    const arrayToCheck = JSON.parse(localStorage.getItem('Notes'));
+    const arrayToCheck = JSON.parse(localStorage.getItem('Notes')) || [];
     
+    if (Array.isArray(arrayToCheck)) {
       const findings = arrayToCheck.filter(note => {
         const title = note.Title.toLowerCase().replace(/\s+/g, '');
         const body = note.Body.toLowerCase().replace(/\s+/g, '');
         const searchTerm = searchItem.toLowerCase().replace(/\s+/g, '');
-        
-        return searchTerm && title.includes(searchTerm) || body.includes(searchTerm);
+
+        return searchTerm && (title.includes(searchTerm) || body.includes(searchTerm));
       });
+
       setTempNotes(findings);
+    } else {
+      console.log('Notes array is not found or is invalid');
+      setTempNotes([]); 
+    }
   };
 
   useEffect(() => {
-    checkForMatch()
-  },[searchItem])
-  
+    checkForMatch();
+  }, [searchItem]);
+
   return (
     <div className='sideBarMenu'>
       <h3 onClick={showMenu} className="menuTitle">
